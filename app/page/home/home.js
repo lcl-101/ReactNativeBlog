@@ -7,23 +7,53 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, Alert, NavigatorIOS, Image} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+class Blick extends Component {
+  constructor(props) {
+    console.log(props)
+    super(props);
+    this.state = {
+      isShowText : true
+    };
+    setInterval(() => {
+      this.setState(previousState => {
+        return {
+          isShowText: !previousState.isShowText
+        }
+      })
+    }, 1000)
+  }
 
-type Props = {};
-export default class App extends Component<Props> {
+  render(){
+    if(!this.state.isShowText){
+      return null;
+    }
+
+    return (
+      <Text style={styles.text}>{this.props.text}</Text>
+    )
+  }
+}
+
+export default class App extends Component {
+  _onPressButton() {
+    Alert.alert('test')
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>hello world123</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Blick text='闪'/>
+        <View>
+          <Button
+            onPress={this._onPressButton}
+            title="点我！"
+          />
+        </View>
+        <View>
+          <Image source={require('../../images/favicon.png')} style={{width: 40, height: 40}} />
+        </View>
       </View>
     );
   }
@@ -33,17 +63,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  text: {
+    fontSize: 40
+  }
 });
