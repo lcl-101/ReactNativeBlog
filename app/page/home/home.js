@@ -7,7 +7,8 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Alert, NavigatorIOS, Image} from 'react-native';
+import {Platform, Text, View, Button, Alert, NavigatorIOS, Image, DeviceInfo} from 'react-native';
+import styles from '../../css/home';
 
 class Blick extends Component {
   constructor(props) {
@@ -16,13 +17,14 @@ class Blick extends Component {
     this.state = {
       isShowText : true
     };
-    setInterval(() => {
-      this.setState(previousState => {
-        return {
-          isShowText: !previousState.isShowText
-        }
-      })
-    }, 1000)
+    console.log(DeviceInfo)
+    // setInterval(() => {
+    //   this.setState(previousState => {
+    //     return {
+    //       isShowText: !previousState.isShowText
+    //     }
+    //   })
+    // }, 1000)
   }
 
   render(){
@@ -58,14 +60,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  text: {
-    fontSize: 40
-  }
-});
