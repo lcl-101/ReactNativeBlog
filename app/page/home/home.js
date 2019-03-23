@@ -54,7 +54,7 @@ export default class App extends Component {
           />
         </View>
         <View>
-          <Image source={require('../../images/favicon.png')} style={{width: 40, height: 40}} />
+          <Image source={require('../../images/favicon.png')} style={{width: 120, height: 120}} />
         </View>
       </View>
     );
